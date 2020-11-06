@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseInterceptors } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CreateMapDataDto } from './dtos/create-map-data.dto';
 import { UpdateMapDataDto } from './dtos/update-map-data.dto';
 import { MapDataService } from './map-data.service';
@@ -8,8 +9,9 @@ export class MapDataController {
     constructor(private mapDataService: MapDataService){}
 
     @Get()
-    findAll(){
-        return "Finding All";
+    findAll(@Query() paginationQuery:PaginationQueryDto){
+        const {limit, offset} = paginationQuery;
+        return `Finding All. Limit: ${limit}, Offset:${offset}`;
     }
 
     @Get('/deleted')
