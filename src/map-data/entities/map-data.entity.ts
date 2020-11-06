@@ -18,5 +18,8 @@ export class MapData {
     mtaTax:number;
     RateCodeId: number;
     StoreAndForwardFlag:boolean;
+    dateCreated: Date;
+    dateLastUpdated:Date;
+    isDeleted:boolean; // inserted this so I could soft-remove data if desired e.g. national security sensitive trips
 
 }
