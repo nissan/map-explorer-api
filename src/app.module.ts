@@ -1,12 +1,18 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MapDataModule } from './map-data/map-data.module';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
     MapDataModule,
+    ConfigModule.forRoot({
+      isGlobal:true,
+      load:[configuration]
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres', // type of our database
       host: 'localhost', // database host

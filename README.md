@@ -7,6 +7,7 @@ My experiment learning [Nest](https://github.com/nestjs/nest) framework by imple
 Uses a PostGreSQL database running in docker container for data layer
 
 ## Installation
+Copy the .env.example file to .env to start using the default database parameters
 Start the database using `docker-compose up -d` from the root to use the `docker-compose.yml` file
 ```bash
 $ yarn
