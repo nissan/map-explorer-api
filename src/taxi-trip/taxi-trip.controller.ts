@@ -1,0 +1,46 @@
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseInterceptors } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
+import { CreateTaxiTripFromFileDto } from './dtos/create-taxi-trip-from-file.dto';
+import { CreateTaxiTripDto } from './dtos/create-taxi-trip.dto';
+import { UpdateTaxiTripDto } from './dtos/update-taxi-trip.dto';
+import { TaxiTripService } from './taxi-trip.service';
+
+@Controller('taxi-trip')
+export class TaxiTripController {
+    constructor(private TaxiTripService: TaxiTripService){}
+
+    @Get()
+    findAll(@Query() paginationQuery:PaginationQueryDto){
+        const {limit, offset} = paginationQuery;
+        return this.TaxiTripService.findAll(limit, offset);
+        
+    }
+
+    @Get('/deleted')
+    findAllDeletedTaxiTrip(@Query() paginationQuery:PaginationQueryDto) {
+        const {limit, offset} = paginationQuery;
+        return this.TaxiTripService.findAllDeleted(limit, offset);
+    }
+
+    @Get(":id")
+    findByTaxiTripId(@Param("id") TaxiTripId:number){
+        return this.TaxiTripService.findOne(TaxiTripId);
+    }
+
+    @Post()
+    createTaxiTrip(@Body() createTaxiTripFromFileDtos: CreateTaxiTripFromFileDto[]){
+        return this.TaxiTripService.createFromFileData(createTaxiTripFromFileDtos);
+    }
+
+    @Patch(':id')
+    updateTaxiTrip(@Param("id") TaxiTripId:number, @Body() updateTaxiTripDto:UpdateTaxiTripDto){
+        return this.TaxiTripService.update(TaxiTripId, updateTaxiTripDto);
+    }
+
+    @Delete(':id')
+    deleteTaxiTrip(@Param('id') TaxiTripId){
+        return this.TaxiTripService.remove(TaxiTripId);
+    }
+
+
+}
