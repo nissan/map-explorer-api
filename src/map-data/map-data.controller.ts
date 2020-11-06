@@ -11,32 +11,34 @@ export class MapDataController {
     @Get()
     findAll(@Query() paginationQuery:PaginationQueryDto){
         const {limit, offset} = paginationQuery;
-        return `Finding All. Limit: ${limit}, Offset:${offset}`;
+        return this.mapDataService.findAll(limit, offset);
+        
     }
 
     @Get('/deleted')
-    findAllDeletedMapData() {
-        return "Finds map data that may have been soft deleted"
+    findAllDeletedMapData(@Query() paginationQuery:PaginationQueryDto) {
+        const {limit, offset} = paginationQuery;
+        return this.mapDataService.findAllDeleted(limit, offset);
     }
 
     @Get(":id")
     findByMapDataId(@Param("id") mapDataId:number){
-        return "Finds a particular point in my map based on the mapDataId"
+        return this.mapDataService.findOne(mapDataId);
     }
 
     @Post()
     createMapData(@Body() createMapDataDto: CreateMapDataDto){
-        return "Creates some new map data for insertion into map data database"
+        this.mapDataService.create(createMapDataDto);
     }
 
     @Patch(':id')
     updateMapData(@Param("id") mapDataId:number, @Body() updateMapDataDto:UpdateMapDataDto){
-        return "Will update an existing bit of map data in the map database"
+        return this.mapDataService.update(mapDataId, updateMapDataDto);
     }
 
     @Delete(':id')
     deleteMapData(@Param('id') mapDataId){
-        return "Will remove a map data entity (soft delete)"
+        return this.mapDataService.remove(mapDataId);
     }
 
 
