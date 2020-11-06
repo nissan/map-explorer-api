@@ -24,13 +24,13 @@ export class CreateTaxiTripFromFileDto {
     @IsCurrency()
     readonly fare_amount:number;
     @IsCurrency()
-    readonly tipAmount:number;
+    readonly tip_amount:number;
     @IsCurrency()
-    readonly tollsAmount:number;
+    readonly tolls_amount:number;
     @IsCurrency()
-    readonly improvementSurchargeAmount:number;
+    readonly improvement_surcharge:number;
     @IsCurrency()
-    readonly totalAmount:number
+    readonly total_amount:number
     @IsNumber()
     readonly extra:number;
     @IsNumber()

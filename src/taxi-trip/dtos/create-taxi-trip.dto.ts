@@ -18,6 +18,8 @@ export class CreateTaxiTripDto {
     readonly dropoffLongitude: number;
     @IsLatitude()
     readonly dropoffLatitude: number;
+    @IsNumber()
+    readonly paymentType: number;
     @IsCurrency()
     readonly fareAmount:number;
     @IsCurrency()
