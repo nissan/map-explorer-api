@@ -3,12 +3,12 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MapDataModule } from './map-data/map-data.module';
+import { TaxiTripModule } from './taxi-trip/taxi-trip.module';
 import configuration from './config/configuration';
 
 @Module({
   imports: [
-    MapDataModule,
+    TaxiTripModule,
     ConfigModule.forRoot({
       isGlobal:true,
       load:[configuration]
