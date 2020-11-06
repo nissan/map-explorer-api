@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { debugPort } from 'process';
 import { CreateTaxiTripFromFileDto } from './dtos/create-taxi-trip-from-file.dto';
 import { CreateTaxiTripDto } from './dtos/create-taxi-trip.dto';
@@ -19,6 +19,20 @@ export class TaxiTripService {
     }
 
     create(createTaxiTripDto:CreateTaxiTripDto){
+        console.log("-----");
+        console.log(`Pickup Date: ${createTaxiTripDto.pickupDateTime}`);
+        console.log(`Pickup Coordinates(Long,Lat): (${createTaxiTripDto.pickupLongitude},${createTaxiTripDto.pickupLatitude})`);
+        console.log(`Dropoff Date: ${createTaxiTripDto.dropoffDateTime}`);
+        console.log(`DropOff Coordinates(Long,Lat): (${createTaxiTripDto.dropoffLongitude},${createTaxiTripDto.dropoffLatitude})`);
+        console.log(`Trip Distance (miles): ${createTaxiTripDto.tripDistance}`)
+        console.log(`Passenger Count: ${createTaxiTripDto.passengerCount}`);
+        console.log(`Fare Amount: $${createTaxiTripDto.fareAmount}`);
+        console.log(`Tip: $${createTaxiTripDto.tipAmount}`);
+        console.log(`Tolls: $${createTaxiTripDto.tollsAmount}`);
+        console.log(`MTA Tax: ${createTaxiTripDto.mtaTax}`);
+        console.log(`Total: $${createTaxiTripDto.totalAmount}`);
+        console.log(`Payment method: ${createTaxiTripDto.paymentType}`);
+        console.log("----");
         return "Creates some new map data for insertion into map data database";
     }
     createFromFileData(createTaxiTripFromFileDtos:CreateTaxiTripFromFileDto[]){
@@ -46,7 +60,7 @@ export class TaxiTripService {
                 totalAmount: dto.total_amount
 
             })));
-            return errors;
+            return errors.length>0?new HttpException(errors,HttpStatus.CONFLICT):[];
         }
 
     update(id:number, updateTaxiTripDto:UpdateTaxiTripDto){
