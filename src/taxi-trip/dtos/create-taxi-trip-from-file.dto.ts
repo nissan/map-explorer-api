@@ -1,6 +1,9 @@
-import {IsBoolean, IsCurrency, IsDate, IsDateString, IsDecimal, IsLatitude, IsLongitude, IsNumber, IsPositive, IsString, MaxLength, MinLength} from 'class-validator';
+import {IsBoolean, IsCurrency, IsDate, IsDateString, IsDecimal, IsIn, IsLatitude, IsLongitude, IsNumber, IsNumberString, IsPositive, IsString, MaxLength, MinLength} from 'class-validator';
+
+// Data type validations based on data dictionary at https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf
 export class CreateTaxiTripFromFileDto {
     @IsNumber()
+    @IsIn([1,2])
     @IsPositive()
     readonly VendorID: number;
     @IsDate()
@@ -20,23 +23,26 @@ export class CreateTaxiTripFromFileDto {
     @IsLatitude()
     readonly dropoff_latitude: number;
     @IsNumber()
+    @IsIn([1,2,3,4,5,6])
     readonly payment_type:number;
     @IsCurrency()
-    readonly fare_amount:number;
+    readonly fare_amount:string;
     @IsCurrency()
-    readonly tip_amount:number;
+    readonly tip_amount:string;
     @IsCurrency()
-    readonly tolls_amount:number;
+    readonly tolls_amount:string;
+    @IsNumberString()
+    readonly improvement_surcharge:string;
     @IsCurrency()
-    readonly improvement_surcharge:number;
+    readonly total_amount:string
     @IsCurrency()
-    readonly total_amount:number
+    readonly extra:string;
+    @IsNumberString()
+    readonly mta_tax:string;
     @IsNumber()
-    readonly extra:number;
-    @IsNumber()
-    readonly mta_tax:number;
-    @IsNumber()
+    @IsIn([1,2,3,4,5,6])
     readonly RateCodeID: number;
     @IsString()
+    @IsIn(["Y","N"])
     readonly store_and_fwd_flag:string;
 }

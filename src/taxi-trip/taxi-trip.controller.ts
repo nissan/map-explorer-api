@@ -27,9 +27,14 @@ export class TaxiTripController {
         return this.TaxiTripService.findOne(TaxiTripId);
     }
 
-    @Post()
-    createTaxiTrip(@Body() createTaxiTripFromFileDtos: CreateTaxiTripFromFileDto[]){
+    @Post("/bulkUpload")
+    createTaxiTrips(@Body() createTaxiTripFromFileDtos: CreateTaxiTripFromFileDto[]){
         return this.TaxiTripService.createFromFileData(createTaxiTripFromFileDtos);
+    }
+
+    @Post()
+    createTaxiTrip(@Body() createTaxiTripFromFileDto: CreateTaxiTripFromFileDto){
+        return this.TaxiTripService.createFromFileData([createTaxiTripFromFileDto]);
     }
 
     @Patch(':id')
