@@ -4,10 +4,14 @@
 ## Description
 
 My experiment learning [Nest](https://github.com/nestjs/nest) framework by implementing a simple Map Explorer API using the TypeScript starter repository.
-Uses a PostGreSQL database running in docker container for data layer.
+Uses a PostGreSQL database running in docker container for data layer. The goal is to ingest the data and store it in a [GeoJson][6] format that would work with [Leaflet][5] on the front end to render the points in a useful fashion.
 ## Dev Notes
 Initially I just used [this site][7] to generate some sample JSON data from the CSV, but then as the model started to get more refined, I used [this site][1] to get the Powershell commands to extract data from the NY City Street Maps based on the [data dictionary][4] and then [csvtojson][2] to convert the sample data from csv to json for easier loading in [Insomnia][3] for testing the API side.
-The goal is to ingest the data and store it in a [GeoJson][6] format that would work with [Leaflet][5] on the front end to render the points in a useful fashion
+The I found that NestJS supported a simple file upload option, so I instead refactored to use that to upload my sample data instead.
+TODO:
+- Refactor the TaxiTrip entity to use a GeoJSON friendly format. Thinking geodata as the primary domain , not the taxitrip. This is based on how Leaflet would more easily use the data from here to render.
+- Add a service that will process a file once uploaded and store the data in the database
+
 
 ## Installation
 Copy the .env.example file to .env to start using the default database parameters
