@@ -1,11 +1,17 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { debugPort } from 'process';
+import { Repository } from 'typeorm';
 import { CreateTaxiTripFromFileDto } from './dtos/create-taxi-trip-from-file.dto';
 import { CreateTaxiTripDto } from './dtos/create-taxi-trip.dto';
 import { UpdateTaxiTripDto } from './dtos/update-taxi-trip.dto';
+import { TaxiTrip } from './entities/taxi-trip.entity';
 
 @Injectable()
 export class TaxiTripService {
+
+    constructor(@InjectRepository(TaxiTrip) private readonly taxiTripRepository: Repository<TaxiTrip>){}
+
     findAll(limit:number=20, offset:number=0){
         return `Finding All. Limit: ${limit}, Offset:${offset}`;
     }
