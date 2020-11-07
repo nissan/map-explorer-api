@@ -4,7 +4,9 @@
 ## Description
 
 My experiment learning [Nest](https://github.com/nestjs/nest) framework by implementing a simple Map Explorer API using the TypeScript starter repository.
-Uses a PostGreSQL database running in docker container for data layer
+Uses a PostGreSQL database running in docker container for data layer.
+## Dev Notes
+Used [this site][1] to get the Powershell commands to extract data from the NY City Street Maps based on the [data dictionary][4] and then [csvtojson][2] to convert the sample data from csv to json for easier loading in [Insomnia][3] for testing the API side.
 
 ## Installation
 Copy the .env.example file to .env to start using the default database parameters
@@ -79,3 +81,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+[1]:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-lines-of-a-csv-file-in-powershell/28908834
+[2]:https://github.com/Keyang/node-csvtojson
+[3]:https://insomnia.rest/
+[4]:https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf
