@@ -1,52 +1,97 @@
-import { IsNumber, IsPositive, IsDate, IsLongitude, IsLatitude, IsCurrency, IsString } from "class-validator";
+import { IsNumber, IsPositive, IsDate, IsLongitude, IsLatitude, IsCurrency, IsString, IsBoolean } from "class-validator";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity() //sql table ==='taxitrip"
 export class TaxiTrip {
-    /**
-     * @packageDocumentation
-     * The row identitfier
-     */
+    @PrimaryGeneratedColumn()
     id: number;
+
+    @Column()
     @IsNumber()
     @IsPositive()
     vendorID: number;
+    
+    @Column()
     @IsDate()
     pickupDateTime: Date;
+    
+    @Column()
     @IsDate()
     dropoffDatetime:Date;
+    
+    @Column()
     @IsPositive()
     passengerCount: number;
+    
+    @Column()
     @IsPositive()
     tripDistance: number;
+    
+    @Column()
     @IsLongitude()
     pickupLongitude: number;
+    
+    @Column()
     @IsLatitude()
     pickupLatitude:number;
+    
+    @Column()
     @IsLongitude()
     dropoffLongitude: number;
+    
+    @Column()
     @IsLatitude()
     dropoffLatitude: number;
+    
+    @Column()
     @IsNumber()
     paymentType:number;
-    @IsCurrency()
+    
+    @Column()
+    @IsPositive()
     fareAmount:number;
-    @IsCurrency()
+
+    @Column()
+    @IsPositive()
     tipAmount:number;
-    @IsCurrency()
+
+    @Column()
+    @IsPositive()
     readonly tollsAmount:number;
-    @IsCurrency()
+
+    @Column()
+    @IsPositive()
     readonly improvementSurchargeAmount:number;
-    @IsCurrency()
+
+    @Column()
+    @IsPositive()
     readonly totalAmount:number
-    @IsNumber()
+
+    @Column()
+    @IsPositive()
     readonly extra:number;
-    @IsNumber()
+
+    @Column()
+    @IsPositive()
     readonly mta_tax:number;
+
+    @Column()
     @IsNumber()
     readonly RateCodeID: number;
-    @IsString()
-    readonly store_and_fwd_flag:string;
+    @Column()
+    @IsBoolean()
+    readonly store_and_fwd_flag:boolean;
+
+    @Column()
+    @IsDate()
     dateCreated: Date;
+    
+    @Column()
+    @IsDate()
     dateLastUpdated:Date;
+    
+    @Column()
+    @IsBoolean()
     isDeleted:boolean; // inserted this so I could soft-remove data if desired e.g. national security sensitive trips
 
 }
