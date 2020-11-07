@@ -8,7 +8,12 @@ export class MapController {
 
     @Get()
     getMap(@Query() paginationQuery:PaginationQueryDto){
-        return this.mapService.getMap(paginationQuery);
+        return this.mapService.findAll(paginationQuery);
+    }
+
+    @Get('/sample')
+    getSampleMap(){
+        return this.mapService.findSample();
     }
 
 }
