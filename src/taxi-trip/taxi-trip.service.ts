@@ -58,7 +58,7 @@ export class TaxiTripService {
             }]
         });
         if (matchTaxiTrip) {
-            throw new HttpException(`Similar taxi trip data already loaded`, HttpStatus.UNPROCESSABLE_ENTITY);
+            throw new HttpException(`Failed to create new. Compare entries createTaxoTripDto: ${JSON.stringify(createTaxiTripDto)} to matching TaxiTrip entity: ${JSON.stringify(matchTaxiTrip)}`, HttpStatus.UNPROCESSABLE_ENTITY);
         }
         else {
             // Log the trip to the data
@@ -90,7 +90,7 @@ export class TaxiTripService {
     }
     async createFromFileData(createTaxiTripFromFileDtos:CreateTaxiTripFromFileDto[]){
             createTaxiTripFromFileDtos.forEach(async (dto) => {
-                    const response = await this.create({
+                    return await this.create({
                         vendorId:dto.VendorID,
                         pickupDateTime: dto.tpep_pickup_datetime,
                         dropoffDateTime: dto.tpep_dropoff_datetime,
