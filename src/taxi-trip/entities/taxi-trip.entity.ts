@@ -9,7 +9,7 @@ export class TaxiTrip {
     @Column()
     @IsNumber()
     @IsPositive()
-    vendorID: number;
+    vendorId: number;
     
     @Column()
     @IsDate()
@@ -17,29 +17,29 @@ export class TaxiTrip {
     
     @Column()
     @IsDate()
-    dropoffDatetime:Date;
+    dropoffDateTime:Date;
     
     @Column()
     @IsPositive()
     passengerCount: number;
     
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
     tripDistance: number;
     
-    @Column()
+    @Column({type: 'real'})
     @IsLongitude()
     pickupLongitude: number;
     
-    @Column()
+    @Column({type: 'real'})
     @IsLatitude()
     pickupLatitude:number;
     
-    @Column()
+    @Column({type: 'real'})
     @IsLongitude()
     dropoffLongitude: number;
     
-    @Column()
+    @Column({type: 'real'})
     @IsLatitude()
     dropoffLatitude: number;
     
@@ -47,40 +47,41 @@ export class TaxiTrip {
     @IsNumber()
     paymentType:number;
     
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
     fareAmount:number;
 
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
     tipAmount:number;
 
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
-    readonly tollsAmount:number;
+    tollsAmount:number;
 
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
-    readonly improvementSurchargeAmount:number;
+    improvementSurchargeAmount:number;
 
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
-    readonly totalAmount:number
+    totalAmount:number
 
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
-    readonly extra:number;
+    extra:number;
 
-    @Column()
+    @Column({type: 'real'})
     @IsPositive()
-    readonly mta_tax:number;
+    mtaTax:number;
 
     @Column()
     @IsNumber()
-    readonly RateCodeID: number;
+    rateCodeId: number;
+    
     @Column()
     @IsBoolean()
-    readonly store_and_fwd_flag:boolean;
+    storeAndForwardFlag:boolean;
 
     @Column()
     @IsDate()

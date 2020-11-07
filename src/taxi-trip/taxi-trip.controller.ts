@@ -11,15 +11,13 @@ export class TaxiTripController {
 
     @Get()
     findAll(@Query() paginationQuery:PaginationQueryDto){
-        const {limit, offset} = paginationQuery;
-        return this.TaxiTripService.findAll(limit, offset);
+        return this.TaxiTripService.findAll(paginationQuery);
         
     }
 
     @Get('/deleted')
     findAllDeletedTaxiTrip(@Query() paginationQuery:PaginationQueryDto) {
-        const {limit, offset} = paginationQuery;
-        return this.TaxiTripService.findAllDeleted(limit, offset);
+        return this.TaxiTripService.findAllDeleted(paginationQuery);
     }
 
     @Get(":id")
