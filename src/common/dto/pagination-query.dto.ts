@@ -3,7 +3,7 @@ import { IsNumber, IsOptional, IsPositive, Min } from "class-validator";
 export class PaginationQueryDto {
     @IsOptional()
     @IsNumber()
-    @Min(0)
+    @Min(1)
     limit: number;
 
     @IsOptional()
