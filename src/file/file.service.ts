@@ -2,15 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateFileDto } from './dtos/create-file.dto';
-import { FileEntity } from './entities/file.entity';
+import { File } from './entities/file.entity';
 
 @Injectable()
 export class FileService {
-    constructor(@InjectRepository(FileEntity)
-        private readonly fileRepository:Repository<FileEntity>
+    constructor(@InjectRepository(File)
+        private readonly fileRepository:Repository<File>
     ){}
     async createFile(file, createFileDto: CreateFileDto) {
-        const newFileEntity: FileEntity = {
+        const newFileEntity: File = {
             id: 0,
             originalFileName: file.originalname,
             storedFileName: file.filename,

@@ -8,14 +8,15 @@ Uses a PostGreSQL database running in docker container for data layer. The goal 
 ## Dev Notes
 Initially I just used [this site][7] to generate some sample JSON data from the CSV, but then as the model started to get more refined, I used [this site][1] to get the Powershell commands to extract data from the NY City Street Maps based on the [data dictionary][4] and then [csvtojson][2] to convert the sample data from csv to json for easier loading in [Insomnia][3] for testing the API side.
 The I found that NestJS supported a simple file upload option, so I instead refactored to use that to upload my sample data instead.
+I switched context and configured the `Dockerfile` and `docker-compose.yml` to also stand up the api in a container, and then added the `launch-settings.json` file for VSCode to allow debugging thru here instead.
 TODO:
 - Refactor the TaxiTrip entity to use a GeoJSON friendly format. Thinking geodata as the primary domain , not the taxitrip. This is based on how Leaflet would more easily use the data from here to render.
 - Add a service that will process a file once uploaded and store the data in the database
-
+- Add the Web app to the docker-compose.yml as part of a production ready deployment for the entire environment.
 
 ## Installation
 Copy the .env.example file to .env to start using the default database parameters
-Start the database using `docker-compose up -d` from the root to use the `docker-compose.yml` file
+Start the database using `docker-compose up` or `docker-compose up -d` if you want it to detach. File should be run from the root folder as the `docker-compose.yml` file uses relative paths to find all the files needed.
 ```bash
 $ yarn
 ```
