@@ -119,18 +119,29 @@ export class TaxiTripService {
         }
 
     async update(id:number, updateTaxiTripDto:UpdateTaxiTripDto){
-        // Make sure we have not already stored this trip
-        const matchTaxiTrip = await this.taxiTripRepository.findOne(id);
+        const matchTaxiTrip = await this.taxiTripRepository.preload(
+            { id: +id,
+            ...updateTaxiTripDto
+        });
         if (!matchTaxiTrip || matchTaxiTrip.isDeleted) {
             throw new BadRequestException(`Matching taxi trip data not found or may be deleted. Cannot update.`);
         }
         else {
-            return(`I can update the record ${id} `);
+            return this.taxiTripRepository.save(matchTaxiTrip);
         }
         
     }
 
-    remove(id:number){
-        return `Will remove map data for id ${id} (soft delete)`;
+    async remove(id:number){
+        const deletedTaxiTrip = await this.taxiTripRepository.preload({
+            id: +id,
+            isDeleted: true
+        });
+        if (!deletedTaxiTrip){
+            throw new BadRequestException(`Matching taxi trip data not found. Cannot delete.`);
+        }
+        else {
+            return this.taxiTripRepository.save(deletedTaxiTrip);
+        }
     }
 }
