@@ -1,6 +1,5 @@
-import { IsString } from "class-validator";
+import { IsJSON, IsOptional, IsString } from "class-validator";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { MapLayer } from "./map-layer.entity";
 
 @Entity()
 export class MapDomain {
@@ -13,13 +12,9 @@ export class MapDomain {
     @IsString()
     description:string;
 
-    @JoinTable()
-    @ManyToMany(
-        type => MapLayer, 
-        (mapLayer) => mapLayer.mapDomains,
-        {
-            cascade:true,
-        }
-        )
-    layers:MapLayer[];
+    @Column()
+    @IsOptional()
+    // @IsJSON()
+    layers:string;
+
 }
