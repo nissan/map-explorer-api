@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseInterceptors } from '@nestjs/common';
+import { ApiExcludeEndpoint } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CreateTaxiTripFromFileDto } from './dtos/create-taxi-trip-from-file.dto';
 import { CreateTaxiTripDto } from './dtos/create-taxi-trip.dto';
@@ -9,6 +10,7 @@ import { TaxiTripService } from './taxi-trip.service';
 export class TaxiTripController {
     constructor(private TaxiTripService: TaxiTripService){}
 
+    @ApiExcludeEndpoint()
     @Get()
     findAll(@Query() paginationQuery?:PaginationQueryDto){
         return this.TaxiTripService.findAll(paginationQuery);
@@ -19,6 +21,7 @@ export class TaxiTripController {
         return this.TaxiTripService.findAllGeoJson(paginationQuery);
     }
 
+    @ApiExcludeEndpoint()
     @Get('/deleted')
     findAllDeletedTaxiTrip(@Query() paginationQuery?:PaginationQueryDto) {
         return this.TaxiTripService.findAllDeleted(paginationQuery);

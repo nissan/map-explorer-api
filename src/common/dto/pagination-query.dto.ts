@@ -1,9 +1,9 @@
-import { IsNumber, IsOptional, IsPositive, Min } from "class-validator";
+import { IsNumber, IsOptional, IsPositive, Max, Min } from "class-validator";
 
 export class PaginationQueryDto {
     @IsOptional()
-    @IsNumber()
-    @Min(1)
+    @IsPositive()
+    @Max(200)
     limit: number;
 
     @IsOptional()
