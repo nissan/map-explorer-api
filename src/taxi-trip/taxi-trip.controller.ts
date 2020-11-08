@@ -10,17 +10,17 @@ export class TaxiTripController {
     constructor(private TaxiTripService: TaxiTripService){}
 
     @Get()
-    findAll(@Query() paginationQuery:PaginationQueryDto){
+    findAll(@Query() paginationQuery?:PaginationQueryDto){
         return this.TaxiTripService.findAll(paginationQuery);
         
     }
     @Get("/geojson")
-    findAllGeoJson(@Query() paginationQuery:PaginationQueryDto){
+    findAllGeoJson(@Query() paginationQuery?:PaginationQueryDto){
         return this.TaxiTripService.findAllGeoJson(paginationQuery);
     }
 
     @Get('/deleted')
-    findAllDeletedTaxiTrip(@Query() paginationQuery:PaginationQueryDto) {
+    findAllDeletedTaxiTrip(@Query() paginationQuery?:PaginationQueryDto) {
         return this.TaxiTripService.findAllDeleted(paginationQuery);
     }
 
