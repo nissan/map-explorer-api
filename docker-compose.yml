@@ -1,3 +1,4 @@
+# Reference for building this at https://blog.logrocket.com/containerized-development-nestjs-docker/
 # Error when starting docker-compose up solved with https://superuser.com/questions/1401705/docker-gcloud-how-to-fix-docker-credential-gcloud-not-installed-or-not-avail
 version: '3.7'
 

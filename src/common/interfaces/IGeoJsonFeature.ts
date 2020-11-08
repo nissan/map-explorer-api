@@ -6,7 +6,7 @@ export interface IGeoJsonFeatureCollection {
 export interface IGeoJsonFeature{
     type: "Feature",
     properties: Record<string,string>[];
-    geometry: Point|Position|Line//|Polygon
+    geometry: Point|Position|LineString //|Polygon
 
 }
 
@@ -20,7 +20,7 @@ export class Position extends Point {
     elevation? : number
 }
 
-export class Line {
+export class LineString {
     type: "Line"
     points: Point[];
 }

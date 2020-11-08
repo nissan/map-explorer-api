@@ -14,6 +14,10 @@ export class TaxiTripController {
         return this.TaxiTripService.findAll(paginationQuery);
         
     }
+    @Get("/geojson")
+    findAllGeoJson(@Query() paginationQuery:PaginationQueryDto){
+        return this.TaxiTripService.findAllGeoJson(paginationQuery);
+    }
 
     @Get('/deleted')
     findAllDeletedTaxiTrip(@Query() paginationQuery:PaginationQueryDto) {
