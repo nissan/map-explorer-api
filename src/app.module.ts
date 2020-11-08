@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TaxiTripModule } from './taxi-trip/taxi-trip.module';
 import { FileModule } from './file/file.module';
+import { TaxiFeatureModule } from './taxi-feature/taxi-feature.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -30,6 +31,7 @@ import configuration from './config/configuration';
         dest: 'uploads/',
       })}),
     FileModule,
+    TaxiFeatureModule,
   ],
   controllers: [AppController],
   providers: [AppService],
